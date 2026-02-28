@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health = 100;
+    public float maxHealth = 100;
+    public float currHealth = 100;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        currHealth = maxHealth;
         //extraJumps = extraJumpValue;
     }
 
@@ -52,11 +53,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Damage")
         {
-            health -= 25;
+            currHealth -= 25;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 10f);
+            HealthUI.instance.UpdateHealthUI();
             StartCoroutine(BlinkRed());
 
-            if (health <= 0)
+            if (currHealth <= 0)
             {
                 Die();
             }
@@ -72,6 +74,8 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        Time.timeScale = 0f;
+        LosePanel.instance.LoseSetUp();
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
 }

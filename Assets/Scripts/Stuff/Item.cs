@@ -4,6 +4,8 @@ public class Item : Stuff
 {
     protected override void Do()
     {
-        //poin++
+        GameManager.instance.GetPoint(1);
+        ScoreUI.instance.UpdateScoreUI();
+        Destroy(gameObject);
     }
 }

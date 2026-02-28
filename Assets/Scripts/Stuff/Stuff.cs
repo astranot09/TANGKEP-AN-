@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Stuff : MonoBehaviour
@@ -9,6 +10,9 @@ public class Stuff : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [SerializeField] private float delayTime = 0.2f;
+    [SerializeField] private bool canTrigger = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,17 +23,32 @@ public class Stuff : MonoBehaviour
         float speed = Random.Range(minSpeed, maxSpeed);
 
         rb.linearVelocity = throwDir * speed + Vector2.up * upForce * 0.5f;
+        StartCoroutine(DelayTrigger());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Basket") || collision.CompareTag("Player"))
+        if(collision.CompareTag("Basket") && canTrigger)
         {
             Do();
         }
+        if (collision.CompareTag("Player"))
+        {
+            PlayerGet();
+        }
+    }
+
+    private IEnumerator DelayTrigger()
+    {
+        yield return new WaitForSeconds(delayTime);
+        canTrigger = true;
     }
 
     protected virtual void Do()
+    {
+
+    }
+    protected virtual void PlayerGet()
     {
 
     }
