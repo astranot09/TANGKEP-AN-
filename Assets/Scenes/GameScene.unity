@@ -1697,7 +1697,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stuffList:
   - stuff: {fileID: 4018301826033077398, guid: 4ebc5190f20ac33499e2aa6c1d5247c5, type: 3}
-    rateGacha: 100
+    rateGacha: 50
+  - stuff: {fileID: 5120513170906261474, guid: 5554f24590ac2fd4185fa82db5267656, type: 3}
+    rateGacha: 50
   time: 1
   spawnPivot: {fileID: 368455937}
 --- !u!1 &848426873
