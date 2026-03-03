@@ -116,7 +116,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4461095571366854922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +133,9 @@ MonoBehaviour:
   maxSpeed: 10
   minThrowForced: 10
   maxThrowForced: 15
+  delayTime: 0.2
+  canTrigger: 0
+  ps: {fileID: 0}
 --- !u!58 &-5414062451443682496
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -15,8 +15,7 @@ public class Bomb : Stuff
 
     private void giveDamage()
     {
-        Player.instance.currHealth -= damage;
-        HealthUI.instance.UpdateHealthUI();
+        Player.instance.TakeDamage(damage);
     }
 
 }

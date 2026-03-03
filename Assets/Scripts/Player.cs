@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -22,12 +23,13 @@ public class Player : MonoBehaviour
     //public int extraJumpValue = 1;
     //private int extraJumps;
 
-
+    private CinemachineImpulseSource impulseSource;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currHealth = maxHealth;
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         //extraJumps = extraJumpValue;
     }
 
@@ -63,10 +65,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Damage")
         {
-            currHealth -= 25;
+            TakeDamage(25);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 10f);
-            HealthUI.instance.UpdateHealthUI();
-            StartCoroutine(BlinkRed());
+
 
             if (currHealth <= 0)
             {
@@ -86,6 +87,13 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 0f;
         LosePanel.instance.LoseSetUp();
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currHealth -= damage;
+        HealthUI.instance.UpdateHealthUI();
+        StartCoroutine(BlinkRed());
+        impulseSource.GenerateImpulse();
     }
 }
