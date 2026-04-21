@@ -38,6 +38,14 @@ public class Stuff : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private IEnumerator DelayTrigger()
     {
         yield return new WaitForSeconds(delayTime);

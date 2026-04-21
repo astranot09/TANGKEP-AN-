@@ -18,6 +18,7 @@ public class GameManager: MonoBehaviour
     public void GetPoint(int scoreValue)
     {
         score += scoreValue;
+        AudioManager.instance.PlaySFX(AudioManager.instance.gainPoint);
     }
     public int ReturnScore()
     {

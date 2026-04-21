@@ -95,5 +95,6 @@ public class Player : MonoBehaviour
         HealthUI.instance.UpdateHealthUI();
         StartCoroutine(BlinkRed());
         impulseSource.GenerateImpulse();
+        AudioManager.instance.PlaySFX(AudioManager.instance.damage);
     }
 }
