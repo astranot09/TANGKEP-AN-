@@ -67,12 +67,6 @@ public class Player : MonoBehaviour
         {
             TakeDamage(25);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 10f);
-
-
-            if (currHealth <= 0)
-            {
-                Die();
-            }
         }
     }
 
@@ -96,5 +90,9 @@ public class Player : MonoBehaviour
         StartCoroutine(BlinkRed());
         impulseSource.GenerateImpulse();
         AudioManager.instance.PlaySFX(AudioManager.instance.damage);
+        if (currHealth <= 0)
+        {
+            Die();
+        }
     }
 }

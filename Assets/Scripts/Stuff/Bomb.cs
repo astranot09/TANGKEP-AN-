@@ -18,4 +18,5 @@ public class Bomb : Stuff
         Player.instance.TakeDamage(damage);
     }
 
+
 }
